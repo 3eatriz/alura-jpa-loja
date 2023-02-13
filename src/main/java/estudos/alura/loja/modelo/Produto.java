@@ -1,9 +1,12 @@
 package estudos.alura.loja.modelo;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Objects;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,15 +21,19 @@ public class Produto {
 	private String nome;
 	private String descricao;
 	private BigDecimal preco;
+	private LocalDate dataCadastro = LocalDate.now();
+	//Mapeando um enum pelo nome (boa pratica)
+	@Enumerated(EnumType.STRING)
+	private Categoria categoria;
 	
 	public Produto() {}
 	
-	public Produto(Long id, String nome, String descricao, BigDecimal preco) {
+	public Produto(String nome, String descricao, BigDecimal preco, Categoria categoria) {
 		super();
-		this.id = id;
 		this.nome = nome;
 		this.descricao = descricao;
 		this.preco = preco;
+		this.categoria = categoria;
 	}
 
 	public Long getId() {
@@ -64,6 +71,21 @@ public class Produto {
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
+	}
+	public LocalDate getDataCadastro() {
+		return dataCadastro;
+	}
+
+	public void setDataCadastro(LocalDate dataCadastro) {
+		this.dataCadastro = dataCadastro;
+	}
+
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
 	}
 
 	@Override
