@@ -10,7 +10,10 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.ForeignKey;
 
 @Entity
 @Table(name="produtos")
@@ -22,8 +25,8 @@ public class Produto {
 	private String descricao;
 	private BigDecimal preco;
 	private LocalDate dataCadastro = LocalDate.now();
-	//Mapeando um enum pelo nome (boa pratica)
-	@Enumerated(EnumType.STRING)
+	//Coloca o mapeamento de acordo com a cardinalidade
+	@ManyToOne
 	private Categoria categoria;
 	
 	public Produto() {}
