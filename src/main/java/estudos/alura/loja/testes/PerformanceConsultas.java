@@ -22,7 +22,7 @@ public class PerformanceConsultas {
         PedidoDao pedidoDao = new PedidoDao(em);
         Pedido pedido = pedidoDao.buscarPedidoComCliente(1l);
         em.close();
-        System.out.println(pedido.getCliente().getNome());
+        System.out.println(pedido.getCliente().getDadosPessoais().getNome());
     }
 
     private static void popularBanco() {
